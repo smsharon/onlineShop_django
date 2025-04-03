@@ -1,8 +1,11 @@
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.urls import path, include
+from . import views
+
+app_name = 'shop'  # Add this line to specify the app name
 
 
 urlpatterns = [
- url(r'^admin/', include(admin.site.urls)),
- url(r'^', include('shop.urls', namespace='shop')),
+    path('', views.product_list, name='product_list'),  # For homepage
+    path('<slug:category_slug>/', views.product_list, name='product_list_by_category'),  # For category-based list
+    path('<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),  # For product details
 ]
