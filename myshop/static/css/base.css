@@ -145,3 +145,87 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+/* Product Detail Section */
+.product-detail {
+    display: flex;
+    max-width: 1000px;
+    margin: 20px 5px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    
+  }
+  
+  .product-detail img {
+    max-width: 100%; /* Fixed width for the image */
+    height: 300px;
+    border-radius: 8px;
+    margin-right: 20px; /* Space between image and details */
+  }
+  
+  .product-detail .details {
+    flex: 1; /* Makes sure the details take up the remaining space */
+    padding-left: 20px;
+  }
+  
+  .product-detail h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .product-detail h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #3498db;
+    margin-bottom: 10px;
+  }
+  
+  .product-detail h2 a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .product-detail h2 a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Description Styling */
+  .product-detail p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .product-detail {
+      flex-direction: column; /* Stacks the image and details vertically on small screens */
+      padding: 15px;
+    }
+  
+    .product-detail img {
+      max-width: 100%; /* Image takes up full width in mobile view */
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  
+    .product-detail .details {
+      padding-left: 0;
+    }
+  
+    .product-detail h1 {
+      font-size: 2rem;
+    }
+  
+    .product-detail h2 {
+      font-size: 1.2rem;
+    }
+  
+    .product-detail p.price {
+      font-size: 1.5rem;
+    }
+  }
