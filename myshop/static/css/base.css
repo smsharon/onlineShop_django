@@ -226,3 +226,78 @@ body {
       font-size: 1.5rem;
     }
   }
+
+.cart {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+  
+.cart th, .cart td {
+    padding: 10px;
+    text-align: left;
+}
+  
+.cart th {
+    background-color: #3f8ebc;
+    color: white;
+}
+  
+.cart tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+.cart img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+  
+  .cart .num {
+    text-align: right;
+}
+  
+.cart .total {
+    background-color: #3f8ebc;
+    color: white;
+    font-weight: bold;
+}
+  
+.cart .total td {
+    padding: 10px;
+}
+  
+.cart-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+  
+.button {
+    padding: 10px 15px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+.button.light {
+    background-color: #f1f1f1;
+    color: #555;
+}
+  
+.button.light:hover {
+    background-color: #ddd;
+}
+  
+.button.primary {
+    background-color: #3f8ebc;
+    color: white;
+}
+  
+.button.primary:hover {
+    background-color: #3579a5;
+}
+  

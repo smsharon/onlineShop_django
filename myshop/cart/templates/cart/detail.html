@@ -1,50 +1,149 @@
 {% extends "shop/base.html" %}
 {% load static %}
+
 {% block title %}
- Your shopping cart
+  Your shopping cart
 {% endblock %}
+
 {% block content %}
- <h1>Your shopping cart</h1>
- <table class="cart">
-   <thead>
-     <tr>
-       <th>Image</th>
-       <th>Product</th>
-       <th>Quantity</th>
-       <th>Remove</th>
-       <th>Unit price</th>                
-       <th>Price</th>
-     </tr>
-   </thead>
-   <tbody>
-     {% for item in cart %}
-       {% with product=item.product %}
-         <tr>
-           <td>
-             <a href="{{ product.get_absolute_url }}">
-               <img src="{% if product.image %}{{ product.image.url 
-}}{% else %}{% static "img/no_image.png" %}{% endif %}">                    
-             </a>
-           </td>
-           <td>{{ product.name }}</td>
-           <td>{{ item.quantity }}</td>
-           <td><a href="{% url "cart:cart_remove" product.id 
-%}">Remove</a></td>
-           <td class="num">${{ item.price }}</td>
-           <td class="num">${{ item.total_price }}</td>
-         </tr>
-       {% endwith %}
-     {% endfor %}
-     <tr class="total">
-       <td>Total</td>
-       <td colspan="4"></td>
-       <td class="num">${{ cart.get_total_price }}</td>
-     </tr>
-   </tbody>
- </table>
- <p class="text-right">
-   <a href="{% url "shop:product_list" %}" class="button 
-light">Continue shopping</a>
-   <a href="#" class="button">Checkout</a>
- </p>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9f9;
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    table.cart {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .cart th, .cart td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    .cart th {
+      background-color: #3f8ebc;
+      color: white;
+    }
+
+    .cart tr:not(:last-child):not(.total) {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .cart img {
+      width: 100px;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .cart .num {
+      text-align: right;
+    }
+
+    .cart .total {
+      background-color: #3f8ebc;
+      color: white;
+      font-weight: bold;
+    }
+
+    .cart .total td {
+      padding: 12px;
+    }
+
+    .cart-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button {
+      padding: 10px 15px;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .button.light {
+      background-color: #f1f1f1;
+      color: #555;
+    }
+
+    .button.light:hover {
+      background-color: #ddd;
+    }
+
+    .button.primary {
+      background-color: #3f8ebc;
+      color: white;
+    }
+
+    .button.primary:hover {
+      background-color: #3579a5;
+    }
+  </style>
+
+  <div class="cart-container">
+    <h1>Your shopping cart</h1>
+
+    <table class="cart">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Remove</th>
+          <th>Unit price</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart %}
+          {% with product=item.product %}
+            <tr>
+              <td>
+                <a href="{{ product.get_absolute_url }}">
+                  <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                </a>
+              </td>
+              <td>{{ product.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td><a href="{% url 'cart:cart_remove' product.id %}">Remove</a></td>
+              <td class="num">${{ item.price }}</td>
+              <td class="num">${{ item.total_price }}</td>
+            </tr>
+          {% endwith %}
+        {% endfor %}
+        <tr class="total">
+          <td>Total</td>
+          <td colspan="4"></td>
+          <td class="num">${{ cart.get_total_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cart-actions">
+      <a href="{% url 'shop:product_list' %}" class="button light">Continue shopping</a>
+      <a href="#" class="button primary">Checkout</a>
+    </div>
+  </div>
 {% endblock %}
