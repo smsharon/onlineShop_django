@@ -1,26 +1,102 @@
 {% extends "shop/base.html" %}
+
 {% block title %}
- Checkout
+  Checkout
 {% endblock %}
+
 {% block content %}
- <h1>Checkout</h1>
- 
- <div class="order-info">
+<style>
+  .checkout-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 20px 0;
+  }
+
+  .order-form {
+    flex: 1;
+    max-width: 60%;
+  }
+
+  .order-form input[type="text"],
+  .order-form input[type="email"],
+  .order-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .order-form input[type="submit"] {
+    background-color: #2b6cb0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .order-form input[type="submit"]:hover {
+    background-color: #1a4c8d;
+  }
+
+  .order-info {
+    width: 35%;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+  }
+
+  .order-info h3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+
+  .order-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .order-info li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .order-info p {
+    border-top: 1px solid #ccc;
+    margin-top: 15px;
+    padding-top: 10px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+  }
+</style>
+
+<h1>Checkout</h1>
+
+<div class="checkout-container">
+  <form action="." method="post" class="order-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Place order"></p>
+  </form>
+
+  <div class="order-info">
     <h3>Your order</h3>
     <ul>
       {% for item in cart %}
         <li>
-          {{ item.quantity }}x {{ item.product.name }} 
-          <span>${{ item.total_price }}</span>
+          {{ item.quantity }}x {{ item.product.name }}
+          <span>ksh{{ item.total_price }}</span>
         </li>
       {% endfor %}
     </ul>
-    <p>Total: ${{ cart.get_total_price }}</p>
- </div>
- 
- <form action="." method="post" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-    {% csrf_token %}
- </form>
+    <p>Total: ksh{{ cart.get_total_price }}</p>
+  </div>
+</div>
 {% endblock %}
