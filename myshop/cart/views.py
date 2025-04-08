@@ -29,6 +29,10 @@ def cart_remove(request, product_id):
 # view to display the cart and its items
 def cart_detail(request):
     cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(
+                          initial={'quantity': item['quantity'],
+                          'update': True})
     return render(request, 'cart/detail.html', {'cart': cart})
 
 #view to add an Add to cart button
