@@ -150,7 +150,9 @@
 
     <div class="cart-actions">
       <a href="{% url 'shop:product_list' %}" class="button light">Continue shopping</a>
-      <a href="#" class="button primary">Checkout</a>
+      <a href="{% url "orders:order_create" %}" class="button">
+        Checkout
+      </a>       
     </div>
   </div>
 {% endblock %}
